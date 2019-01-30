@@ -104,6 +104,7 @@
             // 
             // languageCb
             // 
+            this.languageCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.languageCb.FormattingEnabled = true;
             this.languageCb.Location = new System.Drawing.Point(236, 101);
             this.languageCb.Name = "languageCb";

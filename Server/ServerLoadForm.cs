@@ -14,13 +14,10 @@ namespace Server
 {
     public partial class ServerLoadForm : Form
     {
-        int language;
-        string[] languages = { "en-UK", "es-ES" };
-
         public ServerLoadForm()
         {
             InitializeComponent();
-            language = 0;
+            Server.language = 0;
         }
 
         private void ServerLoadForm_Load(object sender, EventArgs e)
@@ -32,10 +29,11 @@ namespace Server
         //Refreshes all strings in the form when its loaded and when language is changed
         private void RefreshStrings()
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(languages[language]);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Server.languages[Server.language]);
             languageCb.Items.Clear();
             languageCb.Items.Add(Properties.strings.english);
             languageCb.Items.Add(Properties.strings.spanish);
+            languageCb.SelectedIndex = Server.language;
 
             this.Text = Properties.strings.chatroomTitle;
             this.welcomeLbl.Text = Properties.strings.welcome + ":";
@@ -49,16 +47,19 @@ namespace Server
         {
             ComboBox cb = (ComboBox)sender;
 
-            if (cb.SelectedIndex != language)
+            if (cb.SelectedIndex != Server.language)
             {
-                language = cb.SelectedIndex;
+                Server.language = cb.SelectedIndex;
                 RefreshStrings();
             }
         }
 
         private void StartBtn_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            LaunchedServer s = new LaunchedServer(welcomeLbl.Text, Convert.ToInt32(portNumeric.Value));
+            s.ShowDialog();
+            this.Close();
         }
     }
 }

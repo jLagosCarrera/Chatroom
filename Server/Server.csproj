@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LaunchedServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LaunchedServer.Designer.cs">
+      <DependentUpon>LaunchedServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -59,6 +65,9 @@
     </Compile>
     <Compile Include="Server.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="LaunchedServer.resx">
+      <DependentUpon>LaunchedServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\strings.es.resx" />
     <EmbeddedResource Include="Properties\strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
