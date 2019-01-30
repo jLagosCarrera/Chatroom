@@ -117,7 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="chatroom" xml:space="preserve">
-    <value>Chatroom</value>
+  <data name="chatroomTitle" xml:space="preserve">
+    <value>Chatroom local</value>
+  </data>
+  <data name="english" xml:space="preserve">
+    <value>Inglés</value>
+  </data>
+  <data name="info" xml:space="preserve">
+    <value>Te recomendamos que elijas como puerto por defecto el 11235.</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="port" xml:space="preserve">
+    <value>Puerto</value>
+  </data>
+  <data name="spanish" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="start" xml:space="preserve">
+    <value>Iniciar el servidor</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>Mensaje de bienvenida</value>
   </data>
 </root>

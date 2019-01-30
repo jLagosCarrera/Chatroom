@@ -61,11 +61,74 @@ namespace Server.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chatroom.
+        ///   Looks up a localized string similar to Local chatroom.
         /// </summary>
-        internal static string chatroom {
+        internal static string chatroomTitle {
             get {
-                return ResourceManager.GetString("chatroom", resourceCulture);
+                return ResourceManager.GetString("chatroomTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        internal static string english {
+            get {
+                return ResourceManager.GetString("english", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We do recommend you to use port 11235 as default..
+        /// </summary>
+        internal static string info {
+            get {
+                return ResourceManager.GetString("info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string language {
+            get {
+                return ResourceManager.GetString("language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port.
+        /// </summary>
+        internal static string port {
+            get {
+                return ResourceManager.GetString("port", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spanish.
+        /// </summary>
+        internal static string spanish {
+            get {
+                return ResourceManager.GetString("spanish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch server.
+        /// </summary>
+        internal static string start {
+            get {
+                return ResourceManager.GetString("start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome message.
+        /// </summary>
+        internal static string welcome {
+            get {
+                return ResourceManager.GetString("welcome", resourceCulture);
             }
         }
     }
