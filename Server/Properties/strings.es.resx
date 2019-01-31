@@ -123,6 +123,9 @@
   <data name="english" xml:space="preserve">
     <value>Inglés</value>
   </data>
+  <data name="hostedAtPort" xml:space="preserve">
+    <value>alojado en el puerto</value>
+  </data>
   <data name="info" xml:space="preserve">
     <value>Te recomendamos que elijas como puerto por defecto el 11235.</value>
   </data>

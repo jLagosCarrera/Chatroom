@@ -79,6 +79,15 @@ namespace Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to hosted at port.
+        /// </summary>
+        internal static string hostedAtPort {
+            get {
+                return ResourceManager.GetString("hostedAtPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We do recommend you to use port 11235 as default..
         /// </summary>
         internal static string info {

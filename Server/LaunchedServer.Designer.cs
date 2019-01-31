@@ -28,86 +28,224 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.chatGb = new System.Windows.Forms.GroupBox();
+            this.chatTxt = new System.Windows.Forms.TextBox();
+            this.clientsGb = new System.Windows.Forms.GroupBox();
             this.clientsLView = new System.Windows.Forms.ListView();
-            this.clientsGbox = new System.Windows.Forms.GroupBox();
-            this.clientGbox = new System.Windows.Forms.GroupBox();
-            this.optionsGbox = new System.Windows.Forms.GroupBox();
-            this.languageCb = new System.Windows.Forms.ComboBox();
-            this.clientsGbox.SuspendLayout();
-            this.optionsGbox.SuspendLayout();
+            this.optionsGb = new System.Windows.Forms.GroupBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnKickAll = new System.Windows.Forms.Button();
+            this.btnKick = new System.Windows.Forms.Button();
+            this.nameTxt = new System.Windows.Forms.TextBox();
+            this.nameLbl = new System.Windows.Forms.Label();
+            this.portTxt = new System.Windows.Forms.TextBox();
+            this.portLbl = new System.Windows.Forms.Label();
+            this.ipTxt = new System.Windows.Forms.TextBox();
+            this.ipLbl = new System.Windows.Forms.Label();
+            this.msgTxt = new System.Windows.Forms.TextBox();
+            this.btnSend = new System.Windows.Forms.Button();
+            this.chatGb.SuspendLayout();
+            this.clientsGb.SuspendLayout();
+            this.optionsGb.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // chatGb
+            // 
+            this.chatGb.Controls.Add(this.btnSend);
+            this.chatGb.Controls.Add(this.msgTxt);
+            this.chatGb.Controls.Add(this.chatTxt);
+            this.chatGb.Location = new System.Drawing.Point(13, 12);
+            this.chatGb.Name = "chatGb";
+            this.chatGb.Size = new System.Drawing.Size(1044, 399);
+            this.chatGb.TabIndex = 0;
+            this.chatGb.TabStop = false;
+            this.chatGb.Text = "chatGb";
+            // 
+            // chatTxt
+            // 
+            this.chatTxt.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chatTxt.Location = new System.Drawing.Point(3, 18);
+            this.chatTxt.Multiline = true;
+            this.chatTxt.Name = "chatTxt";
+            this.chatTxt.ReadOnly = true;
+            this.chatTxt.Size = new System.Drawing.Size(1038, 347);
+            this.chatTxt.TabIndex = 0;
+            // 
+            // clientsGb
+            // 
+            this.clientsGb.Controls.Add(this.clientsLView);
+            this.clientsGb.Location = new System.Drawing.Point(13, 418);
+            this.clientsGb.Name = "clientsGb";
+            this.clientsGb.Size = new System.Drawing.Size(511, 289);
+            this.clientsGb.TabIndex = 1;
+            this.clientsGb.TabStop = false;
+            this.clientsGb.Text = "clientsGb";
             // 
             // clientsLView
             // 
             this.clientsLView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.clientsLView.Location = new System.Drawing.Point(3, 18);
             this.clientsLView.Name = "clientsLView";
-            this.clientsLView.Size = new System.Drawing.Size(442, 525);
+            this.clientsLView.Size = new System.Drawing.Size(505, 268);
             this.clientsLView.TabIndex = 0;
             this.clientsLView.UseCompatibleStateImageBehavior = false;
             // 
-            // clientsGbox
+            // optionsGb
             // 
-            this.clientsGbox.Controls.Add(this.clientsLView);
-            this.clientsGbox.Location = new System.Drawing.Point(12, 12);
-            this.clientsGbox.Name = "clientsGbox";
-            this.clientsGbox.Size = new System.Drawing.Size(448, 546);
-            this.clientsGbox.TabIndex = 1;
-            this.clientsGbox.TabStop = false;
-            this.clientsGbox.Text = "groupBox1";
+            this.optionsGb.Controls.Add(this.btnClose);
+            this.optionsGb.Controls.Add(this.btnKickAll);
+            this.optionsGb.Controls.Add(this.btnKick);
+            this.optionsGb.Controls.Add(this.nameTxt);
+            this.optionsGb.Controls.Add(this.nameLbl);
+            this.optionsGb.Controls.Add(this.portTxt);
+            this.optionsGb.Controls.Add(this.portLbl);
+            this.optionsGb.Controls.Add(this.ipTxt);
+            this.optionsGb.Controls.Add(this.ipLbl);
+            this.optionsGb.Location = new System.Drawing.Point(530, 418);
+            this.optionsGb.Name = "optionsGb";
+            this.optionsGb.Size = new System.Drawing.Size(527, 289);
+            this.optionsGb.TabIndex = 2;
+            this.optionsGb.TabStop = false;
+            this.optionsGb.Text = "optionsGb";
             // 
-            // clientGbox
+            // btnClose
             // 
-            this.clientGbox.Location = new System.Drawing.Point(466, 12);
-            this.clientGbox.Name = "clientGbox";
-            this.clientGbox.Size = new System.Drawing.Size(416, 269);
-            this.clientGbox.TabIndex = 2;
-            this.clientGbox.TabStop = false;
-            this.clientGbox.Text = "groupBox2";
+            this.btnClose.Location = new System.Drawing.Point(6, 216);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(515, 67);
+            this.btnClose.TabIndex = 8;
+            this.btnClose.Text = "Close Server";
+            this.btnClose.UseVisualStyleBackColor = true;
             // 
-            // optionsGbox
+            // btnKickAll
             // 
-            this.optionsGbox.Controls.Add(this.languageCb);
-            this.optionsGbox.Location = new System.Drawing.Point(466, 287);
-            this.optionsGbox.Name = "optionsGbox";
-            this.optionsGbox.Size = new System.Drawing.Size(416, 271);
-            this.optionsGbox.TabIndex = 3;
-            this.optionsGbox.TabStop = false;
-            this.optionsGbox.Text = "groupBox3";
+            this.btnKickAll.Location = new System.Drawing.Point(6, 143);
+            this.btnKickAll.Name = "btnKickAll";
+            this.btnKickAll.Size = new System.Drawing.Size(515, 67);
+            this.btnKickAll.TabIndex = 7;
+            this.btnKickAll.Text = "Kick All Clients";
+            this.btnKickAll.UseVisualStyleBackColor = true;
             // 
-            // languageCb
+            // btnKick
             // 
-            this.languageCb.FormattingEnabled = true;
-            this.languageCb.Location = new System.Drawing.Point(199, 89);
-            this.languageCb.Name = "languageCb";
-            this.languageCb.Size = new System.Drawing.Size(121, 24);
-            this.languageCb.TabIndex = 0;
+            this.btnKick.Location = new System.Drawing.Point(6, 70);
+            this.btnKick.Name = "btnKick";
+            this.btnKick.Size = new System.Drawing.Size(515, 67);
+            this.btnKick.TabIndex = 6;
+            this.btnKick.Text = "Kick This Client";
+            this.btnKick.UseVisualStyleBackColor = true;
+            // 
+            // nameTxt
+            // 
+            this.nameTxt.Location = new System.Drawing.Point(250, 42);
+            this.nameTxt.Name = "nameTxt";
+            this.nameTxt.ReadOnly = true;
+            this.nameTxt.Size = new System.Drawing.Size(271, 22);
+            this.nameTxt.TabIndex = 5;
+            this.nameTxt.Text = "Jesucristo García";
+            // 
+            // nameLbl
+            // 
+            this.nameLbl.AutoSize = true;
+            this.nameLbl.Location = new System.Drawing.Point(247, 22);
+            this.nameLbl.Name = "nameLbl";
+            this.nameLbl.Size = new System.Drawing.Size(84, 17);
+            this.nameLbl.TabIndex = 4;
+            this.nameLbl.Text = "Client Name";
+            // 
+            // portTxt
+            // 
+            this.portTxt.Location = new System.Drawing.Point(144, 42);
+            this.portTxt.Name = "portTxt";
+            this.portTxt.ReadOnly = true;
+            this.portTxt.Size = new System.Drawing.Size(100, 22);
+            this.portTxt.TabIndex = 3;
+            this.portTxt.Text = "65535";
+            // 
+            // portLbl
+            // 
+            this.portLbl.AutoSize = true;
+            this.portLbl.Location = new System.Drawing.Point(141, 22);
+            this.portLbl.Name = "portLbl";
+            this.portLbl.Size = new System.Drawing.Size(96, 17);
+            this.portLbl.TabIndex = 2;
+            this.portLbl.Text = "Assigned Port";
+            // 
+            // ipTxt
+            // 
+            this.ipTxt.Location = new System.Drawing.Point(6, 42);
+            this.ipTxt.Name = "ipTxt";
+            this.ipTxt.ReadOnly = true;
+            this.ipTxt.Size = new System.Drawing.Size(132, 22);
+            this.ipTxt.TabIndex = 1;
+            this.ipTxt.Text = "255.255.255.255";
+            // 
+            // ipLbl
+            // 
+            this.ipLbl.AutoSize = true;
+            this.ipLbl.Location = new System.Drawing.Point(3, 22);
+            this.ipLbl.Name = "ipLbl";
+            this.ipLbl.Size = new System.Drawing.Size(59, 17);
+            this.ipLbl.TabIndex = 0;
+            this.ipLbl.Text = "Client IP";
+            // 
+            // msgTxt
+            // 
+            this.msgTxt.Location = new System.Drawing.Point(6, 371);
+            this.msgTxt.Name = "msgTxt";
+            this.msgTxt.Size = new System.Drawing.Size(896, 22);
+            this.msgTxt.TabIndex = 1;
+            // 
+            // btnSend
+            // 
+            this.btnSend.Location = new System.Drawing.Point(908, 371);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(133, 23);
+            this.btnSend.TabIndex = 2;
+            this.btnSend.Text = "Send";
+            this.btnSend.UseVisualStyleBackColor = true;
             // 
             // LaunchedServer
             // 
+            this.AcceptButton = this.btnSend;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(894, 564);
-            this.Controls.Add(this.optionsGbox);
-            this.Controls.Add(this.clientGbox);
-            this.Controls.Add(this.clientsGbox);
+            this.ClientSize = new System.Drawing.Size(1069, 719);
+            this.Controls.Add(this.optionsGb);
+            this.Controls.Add(this.clientsGb);
+            this.Controls.Add(this.chatGb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "LaunchedServer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LaunchedServer";
             this.Load += new System.EventHandler(this.LaunchedServer_Load);
-            this.clientsGbox.ResumeLayout(false);
-            this.optionsGbox.ResumeLayout(false);
+            this.chatGb.ResumeLayout(false);
+            this.chatGb.PerformLayout();
+            this.clientsGb.ResumeLayout(false);
+            this.optionsGb.ResumeLayout(false);
+            this.optionsGb.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private System.Windows.Forms.GroupBox chatGb;
+        private System.Windows.Forms.TextBox chatTxt;
+        private System.Windows.Forms.GroupBox clientsGb;
         private System.Windows.Forms.ListView clientsLView;
-        private System.Windows.Forms.GroupBox clientsGbox;
-        private System.Windows.Forms.GroupBox clientGbox;
-        private System.Windows.Forms.GroupBox optionsGbox;
-        private System.Windows.Forms.ComboBox languageCb;
+        private System.Windows.Forms.GroupBox optionsGb;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnKickAll;
+        private System.Windows.Forms.Button btnKick;
+        private System.Windows.Forms.TextBox nameTxt;
+        private System.Windows.Forms.Label nameLbl;
+        private System.Windows.Forms.TextBox portTxt;
+        private System.Windows.Forms.Label portLbl;
+        private System.Windows.Forms.TextBox ipTxt;
+        private System.Windows.Forms.Label ipLbl;
+        private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.TextBox msgTxt;
     }
 }

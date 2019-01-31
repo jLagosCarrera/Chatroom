@@ -45,7 +45,7 @@
             this.startBtn.Location = new System.Drawing.Point(0, 158);
             this.startBtn.Name = "startBtn";
             this.startBtn.Size = new System.Drawing.Size(453, 68);
-            this.startBtn.TabIndex = 0;
+            this.startBtn.TabIndex = 7;
             this.startBtn.Text = "Start Server";
             this.startBtn.UseVisualStyleBackColor = true;
             this.startBtn.Click += new System.EventHandler(this.StartBtn_Click);
@@ -56,7 +56,7 @@
             this.welcomeLbl.Location = new System.Drawing.Point(9, 9);
             this.welcomeLbl.Name = "welcomeLbl";
             this.welcomeLbl.Size = new System.Drawing.Size(131, 17);
-            this.welcomeLbl.TabIndex = 2;
+            this.welcomeLbl.TabIndex = 0;
             this.welcomeLbl.Text = "Welcome message:";
             // 
             // portLbl
@@ -65,7 +65,7 @@
             this.portLbl.Location = new System.Drawing.Point(9, 82);
             this.portLbl.Name = "portLbl";
             this.portLbl.Size = new System.Drawing.Size(34, 17);
-            this.portLbl.TabIndex = 5;
+            this.portLbl.TabIndex = 2;
             this.portLbl.Text = "Port";
             // 
             // portNumeric
@@ -78,7 +78,7 @@
             0});
             this.portNumeric.Name = "portNumeric";
             this.portNumeric.Size = new System.Drawing.Size(218, 22);
-            this.portNumeric.TabIndex = 6;
+            this.portNumeric.TabIndex = 3;
             this.portNumeric.Value = new decimal(new int[] {
             11235,
             0,
@@ -91,7 +91,7 @@
             this.welcomeTxt.Multiline = true;
             this.welcomeTxt.Name = "welcomeTxt";
             this.welcomeTxt.Size = new System.Drawing.Size(429, 50);
-            this.welcomeTxt.TabIndex = 7;
+            this.welcomeTxt.TabIndex = 1;
             // 
             // languageLbl
             // 
@@ -99,7 +99,7 @@
             this.languageLbl.Location = new System.Drawing.Point(233, 82);
             this.languageLbl.Name = "languageLbl";
             this.languageLbl.Size = new System.Drawing.Size(72, 17);
-            this.languageLbl.TabIndex = 8;
+            this.languageLbl.TabIndex = 4;
             this.languageLbl.Text = "Language";
             // 
             // languageCb
@@ -109,7 +109,7 @@
             this.languageCb.Location = new System.Drawing.Point(236, 101);
             this.languageCb.Name = "languageCb";
             this.languageCb.Size = new System.Drawing.Size(205, 24);
-            this.languageCb.TabIndex = 9;
+            this.languageCb.TabIndex = 5;
             this.languageCb.SelectedIndexChanged += new System.EventHandler(this.LanguageCb_SelectedIndexChanged);
             // 
             // infoTxt
@@ -118,7 +118,7 @@
             this.infoTxt.Location = new System.Drawing.Point(12, 131);
             this.infoTxt.Name = "infoTxt";
             this.infoTxt.Size = new System.Drawing.Size(429, 22);
-            this.infoTxt.TabIndex = 10;
+            this.infoTxt.TabIndex = 6;
             // 
             // ServerLoadForm
             // 
