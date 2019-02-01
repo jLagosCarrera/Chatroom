@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.chatGb = new System.Windows.Forms.GroupBox();
+            this.btnSend = new System.Windows.Forms.Button();
+            this.msgTxt = new System.Windows.Forms.TextBox();
             this.chatTxt = new System.Windows.Forms.TextBox();
             this.clientsGb = new System.Windows.Forms.GroupBox();
             this.clientsLView = new System.Windows.Forms.ListView();
@@ -42,8 +45,7 @@
             this.portLbl = new System.Windows.Forms.Label();
             this.ipTxt = new System.Windows.Forms.TextBox();
             this.ipLbl = new System.Windows.Forms.Label();
-            this.msgTxt = new System.Windows.Forms.TextBox();
-            this.btnSend = new System.Windows.Forms.Button();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.chatGb.SuspendLayout();
             this.clientsGb.SuspendLayout();
             this.optionsGb.SuspendLayout();
@@ -60,6 +62,22 @@
             this.chatGb.TabIndex = 0;
             this.chatGb.TabStop = false;
             this.chatGb.Text = "chatGb";
+            // 
+            // btnSend
+            // 
+            this.btnSend.Location = new System.Drawing.Point(908, 371);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(133, 23);
+            this.btnSend.TabIndex = 2;
+            this.btnSend.Text = "Send";
+            this.btnSend.UseVisualStyleBackColor = true;
+            // 
+            // msgTxt
+            // 
+            this.msgTxt.Location = new System.Drawing.Point(6, 371);
+            this.msgTxt.Name = "msgTxt";
+            this.msgTxt.Size = new System.Drawing.Size(896, 22);
+            this.msgTxt.TabIndex = 1;
             // 
             // chatTxt
             // 
@@ -137,17 +155,17 @@
             // 
             // nameTxt
             // 
-            this.nameTxt.Location = new System.Drawing.Point(250, 42);
+            this.nameTxt.Location = new System.Drawing.Point(256, 42);
             this.nameTxt.Name = "nameTxt";
             this.nameTxt.ReadOnly = true;
-            this.nameTxt.Size = new System.Drawing.Size(271, 22);
+            this.nameTxt.Size = new System.Drawing.Size(265, 22);
             this.nameTxt.TabIndex = 5;
-            this.nameTxt.Text = "Jesucristo García";
+            this.nameTxt.Text = "-";
             // 
             // nameLbl
             // 
             this.nameLbl.AutoSize = true;
-            this.nameLbl.Location = new System.Drawing.Point(247, 22);
+            this.nameLbl.Location = new System.Drawing.Point(253, 22);
             this.nameLbl.Name = "nameLbl";
             this.nameLbl.Size = new System.Drawing.Size(84, 17);
             this.nameLbl.TabIndex = 4;
@@ -158,9 +176,9 @@
             this.portTxt.Location = new System.Drawing.Point(144, 42);
             this.portTxt.Name = "portTxt";
             this.portTxt.ReadOnly = true;
-            this.portTxt.Size = new System.Drawing.Size(100, 22);
+            this.portTxt.Size = new System.Drawing.Size(106, 22);
             this.portTxt.TabIndex = 3;
-            this.portTxt.Text = "65535";
+            this.portTxt.Text = "-";
             // 
             // portLbl
             // 
@@ -178,7 +196,7 @@
             this.ipTxt.ReadOnly = true;
             this.ipTxt.Size = new System.Drawing.Size(132, 22);
             this.ipTxt.TabIndex = 1;
-            this.ipTxt.Text = "255.255.255.255";
+            this.ipTxt.Text = "-";
             // 
             // ipLbl
             // 
@@ -189,21 +207,10 @@
             this.ipLbl.TabIndex = 0;
             this.ipLbl.Text = "Client IP";
             // 
-            // msgTxt
+            // notifyIcon
             // 
-            this.msgTxt.Location = new System.Drawing.Point(6, 371);
-            this.msgTxt.Name = "msgTxt";
-            this.msgTxt.Size = new System.Drawing.Size(896, 22);
-            this.msgTxt.TabIndex = 1;
-            // 
-            // btnSend
-            // 
-            this.btnSend.Location = new System.Drawing.Point(908, 371);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(133, 23);
-            this.btnSend.TabIndex = 2;
-            this.btnSend.Text = "Send";
-            this.btnSend.UseVisualStyleBackColor = true;
+            this.notifyIcon.Text = "notifyIcon1";
+            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseDoubleClick);
             // 
             // LaunchedServer
             // 
@@ -219,7 +226,9 @@
             this.Name = "LaunchedServer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LaunchedServer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LaunchedServer_FormClosing);
             this.Load += new System.EventHandler(this.LaunchedServer_Load);
+            this.Resize += new System.EventHandler(this.LaunchedServer_Resize);
             this.chatGb.ResumeLayout(false);
             this.chatGb.PerformLayout();
             this.clientsGb.ResumeLayout(false);
@@ -247,5 +256,6 @@
         private System.Windows.Forms.Label ipLbl;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.TextBox msgTxt;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
     }
 }

@@ -61,6 +61,24 @@ namespace Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assigned Port.
+        /// </summary>
+        internal static string assignedPort {
+            get {
+                return ResourceManager.GetString("assignedPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chat.
+        /// </summary>
+        internal static string chat {
+            get {
+                return ResourceManager.GetString("chat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Local chatroom.
         /// </summary>
         internal static string chatroomTitle {
@@ -70,11 +88,101 @@ namespace Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clients.
+        /// </summary>
+        internal static string clients {
+            get {
+                return ResourceManager.GetString("clients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of clients.
+        /// </summary>
+        internal static string clientsNumber {
+            get {
+                return ResourceManager.GetString("clientsNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close server.
+        /// </summary>
+        internal static string close {
+            get {
+                return ResourceManager.GetString("close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you wanna close?.
+        /// </summary>
+        internal static string closing {
+            get {
+                return ResourceManager.GetString("closing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Closing.
+        /// </summary>
+        internal static string closingTitle {
+            get {
+                return ResourceManager.GetString("closingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connected client {0} at port {1}.
+        /// </summary>
+        internal static string connectedWithClient {
+            get {
+                return ResourceManager.GetString("connectedWithClient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disconnected client {0} at port {1}.
+        /// </summary>
+        internal static string disconnectedClient {
+            get {
+                return ResourceManager.GetString("disconnectedClient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         internal static string english {
             get {
                 return ResourceManager.GetString("english", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your nickname.
+        /// </summary>
+        internal static string enterNickname {
+            get {
+                return ResourceManager.GetString("enterNickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string error {
+            get {
+                return ResourceManager.GetString("error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a welcome message.
+        /// </summary>
+        internal static string fillWelcome {
+            get {
+                return ResourceManager.GetString("fillWelcome", resourceCulture);
             }
         }
         
@@ -97,6 +205,33 @@ namespace Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Client IP.
+        /// </summary>
+        internal static string ip {
+            get {
+                return ResourceManager.GetString("ip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kick selected client.
+        /// </summary>
+        internal static string kick {
+            get {
+                return ResourceManager.GetString("kick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kick ALL clients.
+        /// </summary>
+        internal static string kickAll {
+            get {
+                return ResourceManager.GetString("kickAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string language {
@@ -106,11 +241,56 @@ namespace Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to listening at port.
+        /// </summary>
+        internal static string listeningAtPort {
+            get {
+                return ResourceManager.GetString("listeningAtPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client Name.
+        /// </summary>
+        internal static string name {
+            get {
+                return ResourceManager.GetString("name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        internal static string options {
+            get {
+                return ResourceManager.GetString("options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Port.
         /// </summary>
         internal static string port {
             get {
                 return ResourceManager.GetString("port", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to running.
+        /// </summary>
+        internal static string running {
+            get {
+                return ResourceManager.GetString("running", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        internal static string send {
+            get {
+                return ResourceManager.GetString("send", resourceCulture);
             }
         }
         

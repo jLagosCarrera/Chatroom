@@ -36,7 +36,10 @@
             this.languageLbl = new System.Windows.Forms.Label();
             this.languageCb = new System.Windows.Forms.ComboBox();
             this.infoTxt = new System.Windows.Forms.TextBox();
+            this.clientsNumeric = new System.Windows.Forms.NumericUpDown();
+            this.clientsLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.portNumeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientsNumeric)).BeginInit();
             this.SuspendLayout();
             // 
             // startBtn
@@ -45,7 +48,7 @@
             this.startBtn.Location = new System.Drawing.Point(0, 158);
             this.startBtn.Name = "startBtn";
             this.startBtn.Size = new System.Drawing.Size(453, 68);
-            this.startBtn.TabIndex = 7;
+            this.startBtn.TabIndex = 9;
             this.startBtn.Text = "Start Server";
             this.startBtn.UseVisualStyleBackColor = true;
             this.startBtn.Click += new System.EventHandler(this.StartBtn_Click);
@@ -77,7 +80,7 @@
             0,
             0});
             this.portNumeric.Name = "portNumeric";
-            this.portNumeric.Size = new System.Drawing.Size(218, 22);
+            this.portNumeric.Size = new System.Drawing.Size(128, 22);
             this.portNumeric.TabIndex = 3;
             this.portNumeric.Value = new decimal(new int[] {
             11235,
@@ -96,20 +99,20 @@
             // languageLbl
             // 
             this.languageLbl.AutoSize = true;
-            this.languageLbl.Location = new System.Drawing.Point(233, 82);
+            this.languageLbl.Location = new System.Drawing.Point(306, 82);
             this.languageLbl.Name = "languageLbl";
             this.languageLbl.Size = new System.Drawing.Size(72, 17);
-            this.languageLbl.TabIndex = 4;
+            this.languageLbl.TabIndex = 6;
             this.languageLbl.Text = "Language";
             // 
             // languageCb
             // 
             this.languageCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.languageCb.FormattingEnabled = true;
-            this.languageCb.Location = new System.Drawing.Point(236, 101);
+            this.languageCb.Location = new System.Drawing.Point(309, 101);
             this.languageCb.Name = "languageCb";
-            this.languageCb.Size = new System.Drawing.Size(205, 24);
-            this.languageCb.TabIndex = 5;
+            this.languageCb.Size = new System.Drawing.Size(132, 24);
+            this.languageCb.TabIndex = 7;
             this.languageCb.SelectedIndexChanged += new System.EventHandler(this.LanguageCb_SelectedIndexChanged);
             // 
             // infoTxt
@@ -118,13 +121,37 @@
             this.infoTxt.Location = new System.Drawing.Point(12, 131);
             this.infoTxt.Name = "infoTxt";
             this.infoTxt.Size = new System.Drawing.Size(429, 22);
-            this.infoTxt.TabIndex = 6;
+            this.infoTxt.TabIndex = 8;
+            // 
+            // clientsNumeric
+            // 
+            this.clientsNumeric.Location = new System.Drawing.Point(146, 102);
+            this.clientsNumeric.Name = "clientsNumeric";
+            this.clientsNumeric.Size = new System.Drawing.Size(157, 22);
+            this.clientsNumeric.TabIndex = 5;
+            this.clientsNumeric.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // clientsLbl
+            // 
+            this.clientsLbl.AutoSize = true;
+            this.clientsLbl.Location = new System.Drawing.Point(143, 82);
+            this.clientsLbl.Name = "clientsLbl";
+            this.clientsLbl.Size = new System.Drawing.Size(118, 17);
+            this.clientsLbl.TabIndex = 4;
+            this.clientsLbl.Text = "Number of clients";
             // 
             // ServerLoadForm
             // 
+            this.AcceptButton = this.startBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(453, 226);
+            this.Controls.Add(this.clientsNumeric);
+            this.Controls.Add(this.clientsLbl);
             this.Controls.Add(this.infoTxt);
             this.Controls.Add(this.languageCb);
             this.Controls.Add(this.languageLbl);
@@ -137,8 +164,10 @@
             this.MaximizeBox = false;
             this.Name = "ServerLoadForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ServerLoadForm_FormClosing);
             this.Load += new System.EventHandler(this.ServerLoadForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.portNumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientsNumeric)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,11 +178,13 @@
         private System.Windows.Forms.Button startBtn;
         private System.Windows.Forms.Label welcomeLbl;
         private System.Windows.Forms.Label portLbl;
-        private System.Windows.Forms.NumericUpDown portNumeric;
-        private System.Windows.Forms.TextBox welcomeTxt;
         private System.Windows.Forms.Label languageLbl;
         private System.Windows.Forms.ComboBox languageCb;
         private System.Windows.Forms.TextBox infoTxt;
+        internal System.Windows.Forms.TextBox welcomeTxt;
+        internal System.Windows.Forms.NumericUpDown portNumeric;
+        internal System.Windows.Forms.NumericUpDown clientsNumeric;
+        private System.Windows.Forms.Label clientsLbl;
     }
 }
 

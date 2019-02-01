@@ -117,11 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="assignedPort" xml:space="preserve">
+    <value>Assigned Port</value>
+  </data>
+  <data name="chat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
   <data name="chatroomTitle" xml:space="preserve">
     <value>Local chatroom</value>
   </data>
+  <data name="clients" xml:space="preserve">
+    <value>Clients</value>
+  </data>
+  <data name="clientsNumber" xml:space="preserve">
+    <value>Number of clients</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>Close server</value>
+  </data>
+  <data name="closing" xml:space="preserve">
+    <value>Are you sure you wanna close?</value>
+  </data>
+  <data name="closingTitle" xml:space="preserve">
+    <value>Closing</value>
+  </data>
+  <data name="connectedWithClient" xml:space="preserve">
+    <value>Connected client {0} at port {1}</value>
+  </data>
+  <data name="disconnectedClient" xml:space="preserve">
+    <value>Disconnected client {0} at port {1}</value>
+  </data>
   <data name="english" xml:space="preserve">
     <value>English</value>
+  </data>
+  <data name="enterNickname" xml:space="preserve">
+    <value>Enter your nickname</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="fillWelcome" xml:space="preserve">
+    <value>You must enter a welcome message</value>
   </data>
   <data name="hostedAtPort" xml:space="preserve">
     <value>hosted at port</value>
@@ -129,11 +165,35 @@
   <data name="info" xml:space="preserve">
     <value>We do recommend you to use port 11235 as default.</value>
   </data>
+  <data name="ip" xml:space="preserve">
+    <value>Client IP</value>
+  </data>
+  <data name="kick" xml:space="preserve">
+    <value>Kick selected client</value>
+  </data>
+  <data name="kickAll" xml:space="preserve">
+    <value>Kick ALL clients</value>
+  </data>
   <data name="language" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="listeningAtPort" xml:space="preserve">
+    <value>listening at port</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Client Name</value>
+  </data>
+  <data name="options" xml:space="preserve">
+    <value>Options</value>
+  </data>
   <data name="port" xml:space="preserve">
     <value>Port</value>
+  </data>
+  <data name="running" xml:space="preserve">
+    <value>running</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Send</value>
   </data>
   <data name="spanish" xml:space="preserve">
     <value>Spanish</value>

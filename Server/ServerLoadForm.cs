@@ -26,7 +26,7 @@ namespace Server
             this.Icon = Properties.Resources.serverIco;
         }
 
-        //Refreshes all strings in the form when its loaded and when language is changed
+        //Refreshes all strings in the form when its loaded and when language is changed.
         private void RefreshStrings()
         {
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Server.languages[Server.language]);
@@ -41,6 +41,7 @@ namespace Server
             this.languageLbl.Text = Properties.strings.language + ":";
             this.startBtn.Text = Properties.strings.start;
             this.infoTxt.Text = Properties.strings.info;
+            this.clientsLbl.Text = Properties.strings.clientsNumber + ":";
         }
 
         private void LanguageCb_SelectedIndexChanged(object sender, EventArgs e)
@@ -56,10 +57,27 @@ namespace Server
 
         private void StartBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            LaunchedServer s = new LaunchedServer(welcomeLbl.Text, Convert.ToInt32(portNumeric.Value));
-            s.ShowDialog();
-            this.Close();
+            if (string.IsNullOrWhiteSpace(this.welcomeTxt.Text))
+            {
+                MessageBox.Show(Properties.strings.fillWelcome, Properties.strings.error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                this.DialogResult = DialogResult.OK;
+            }
+        }
+
+        //Kinda weirdo but it works, handles closing only when pressing X.
+        private void ServerLoadForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (DialogResult != DialogResult.OK)
+            {
+                DialogResult res = MessageBox.Show(
+                        Properties.strings.closing, Properties.strings.closingTitle,
+                        MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (res == DialogResult.Cancel)
+                    e.Cancel = true;
+            }
         }
     }
 }
