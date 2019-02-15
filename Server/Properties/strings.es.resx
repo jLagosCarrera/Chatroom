@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="alone" xml:space="preserve">
+    <value>Eres el único cliente conectado</value>
+  </data>
   <data name="assignedPort" xml:space="preserve">
     <value>Puerto asignado</value>
   </data>
@@ -141,6 +144,9 @@
   <data name="closingTitle" xml:space="preserve">
     <value>Cerrando</value>
   </data>
+  <data name="connectedClients" xml:space="preserve">
+    <value>Clientes Conectados</value>
+  </data>
   <data name="connectedWithClient" xml:space="preserve">
     <value>Conectado cliente {0} en el puerto {1}</value>
   </data>
@@ -155,6 +161,9 @@
   </data>
   <data name="error" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="exit" xml:space="preserve">
+    <value>#salir</value>
   </data>
   <data name="fillWelcome" xml:space="preserve">
     <value>Debes insertar un mensaje de bienvenida</value>
@@ -177,6 +186,9 @@
   <data name="language" xml:space="preserve">
     <value>Idioma</value>
   </data>
+  <data name="list" xml:space="preserve">
+    <value>#list</value>
+  </data>
   <data name="listeningAtPort" xml:space="preserve">
     <value>escuchando en el puerto</value>
   </data>
@@ -194,6 +206,12 @@
   </data>
   <data name="send" xml:space="preserve">
     <value>Enviar</value>
+  </data>
+  <data name="server" xml:space="preserve">
+    <value>Servidor</value>
+  </data>
+  <data name="serverInfo" xml:space="preserve">
+    <value>Información del servidor</value>
   </data>
   <data name="spanish" xml:space="preserve">
     <value>Español</value>

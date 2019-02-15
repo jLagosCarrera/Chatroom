@@ -17,7 +17,7 @@ namespace Server
         public ServerLoadForm()
         {
             InitializeComponent();
-            Server.language = 0;
+            ServerHandler.language = 0;
         }
 
         private void ServerLoadForm_Load(object sender, EventArgs e)
@@ -29,11 +29,11 @@ namespace Server
         //Refreshes all strings in the form when its loaded and when language is changed.
         private void RefreshStrings()
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Server.languages[Server.language]);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(ServerHandler.languages[ServerHandler.language]);
             languageCb.Items.Clear();
             languageCb.Items.Add(Properties.strings.english);
             languageCb.Items.Add(Properties.strings.spanish);
-            languageCb.SelectedIndex = Server.language;
+            languageCb.SelectedIndex = ServerHandler.language;
 
             this.Text = Properties.strings.chatroomTitle;
             this.welcomeLbl.Text = Properties.strings.welcome + ":";
@@ -48,9 +48,9 @@ namespace Server
         {
             ComboBox cb = (ComboBox)sender;
 
-            if (cb.SelectedIndex != Server.language)
+            if (cb.SelectedIndex != ServerHandler.language)
             {
-                Server.language = cb.SelectedIndex;
+                ServerHandler.language = cb.SelectedIndex;
                 RefreshStrings();
             }
         }

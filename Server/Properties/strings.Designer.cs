@@ -61,6 +61,15 @@ namespace Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are the only connected client.
+        /// </summary>
+        internal static string alone {
+            get {
+                return ResourceManager.GetString("alone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Assigned Port.
         /// </summary>
         internal static string assignedPort {
@@ -133,6 +142,15 @@ namespace Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connected Clients.
+        /// </summary>
+        internal static string connectedClients {
+            get {
+                return ResourceManager.GetString("connectedClients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Connected client {0} at port {1}.
         /// </summary>
         internal static string connectedWithClient {
@@ -174,6 +192,15 @@ namespace Server.Properties {
         internal static string error {
             get {
                 return ResourceManager.GetString("error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #exit.
+        /// </summary>
+        internal static string exit {
+            get {
+                return ResourceManager.GetString("exit", resourceCulture);
             }
         }
         
@@ -241,6 +268,15 @@ namespace Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to #list.
+        /// </summary>
+        internal static string list {
+            get {
+                return ResourceManager.GetString("list", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to listening at port.
         /// </summary>
         internal static string listeningAtPort {
@@ -291,6 +327,24 @@ namespace Server.Properties {
         internal static string send {
             get {
                 return ResourceManager.GetString("send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server.
+        /// </summary>
+        internal static string server {
+            get {
+                return ResourceManager.GetString("server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server info.
+        /// </summary>
+        internal static string serverInfo {
+            get {
+                return ResourceManager.GetString("serverInfo", resourceCulture);
             }
         }
         

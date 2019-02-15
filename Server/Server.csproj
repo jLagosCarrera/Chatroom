@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
+    <Compile Include="ClientHandler.cs" />
     <Compile Include="LaunchedServer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +58,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="ServerHandler.cs" />
     <Compile Include="ServerLoadForm.cs">
       <SubType>Form</SubType>
     </Compile>
