@@ -123,6 +123,9 @@
   <data name="assignedPort" xml:space="preserve">
     <value>Assigned Port</value>
   </data>
+  <data name="availableCommands" xml:space="preserve">
+    <value>Available commands</value>
+  </data>
   <data name="chat" xml:space="preserve">
     <value>Chat</value>
   </data>
@@ -144,11 +147,23 @@
   <data name="closingTitle" xml:space="preserve">
     <value>Closing</value>
   </data>
+  <data name="cmd" xml:space="preserve">
+    <value>#cmd</value>
+  </data>
+  <data name="cmdInfo" xml:space="preserve">
+    <value>Command list</value>
+  </data>
+  <data name="commands" xml:space="preserve">
+    <value>Type #cmd to view available commands </value>
+  </data>
   <data name="connectedClients" xml:space="preserve">
     <value>Connected Clients</value>
   </data>
   <data name="connectedWithClient" xml:space="preserve">
     <value>Connected client {0} at port {1}</value>
+  </data>
+  <data name="cya" xml:space="preserve">
+    <value>See you later!</value>
   </data>
   <data name="disconnectedClient" xml:space="preserve">
     <value>Disconnected client {0} at port {1}</value>
@@ -164,6 +179,9 @@
   </data>
   <data name="exit" xml:space="preserve">
     <value>#exit</value>
+  </data>
+  <data name="exitInfo" xml:space="preserve">
+    <value>Exits server</value>
   </data>
   <data name="fillWelcome" xml:space="preserve">
     <value>You must enter a welcome message</value>
@@ -192,6 +210,12 @@
   <data name="listeningAtPort" xml:space="preserve">
     <value>listening at port</value>
   </data>
+  <data name="listInfo" xml:space="preserve">
+    <value>Lists all connected users</value>
+  </data>
+  <data name="motd" xml:space="preserve">
+    <value>MOTD</value>
+  </data>
   <data name="name" xml:space="preserve">
     <value>Client Name</value>
   </data>
@@ -218,6 +242,9 @@
   </data>
   <data name="start" xml:space="preserve">
     <value>Launch server</value>
+  </data>
+  <data name="unknownCmd" xml:space="preserve">
+    <value>Unknown command!</value>
   </data>
   <data name="welcome" xml:space="preserve">
     <value>Welcome message</value>

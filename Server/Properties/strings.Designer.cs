@@ -79,6 +79,15 @@ namespace Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Available commands.
+        /// </summary>
+        internal static string availableCommands {
+            get {
+                return ResourceManager.GetString("availableCommands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chat.
         /// </summary>
         internal static string chat {
@@ -142,6 +151,33 @@ namespace Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to #cmd.
+        /// </summary>
+        internal static string cmd {
+            get {
+                return ResourceManager.GetString("cmd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Command list.
+        /// </summary>
+        internal static string cmdInfo {
+            get {
+                return ResourceManager.GetString("cmdInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type #cmd to view available commands .
+        /// </summary>
+        internal static string commands {
+            get {
+                return ResourceManager.GetString("commands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Connected Clients.
         /// </summary>
         internal static string connectedClients {
@@ -156,6 +192,15 @@ namespace Server.Properties {
         internal static string connectedWithClient {
             get {
                 return ResourceManager.GetString("connectedWithClient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See you later!.
+        /// </summary>
+        internal static string cya {
+            get {
+                return ResourceManager.GetString("cya", resourceCulture);
             }
         }
         
@@ -201,6 +246,15 @@ namespace Server.Properties {
         internal static string exit {
             get {
                 return ResourceManager.GetString("exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exits server.
+        /// </summary>
+        internal static string exitInfo {
+            get {
+                return ResourceManager.GetString("exitInfo", resourceCulture);
             }
         }
         
@@ -286,6 +340,24 @@ namespace Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lists all connected users.
+        /// </summary>
+        internal static string listInfo {
+            get {
+                return ResourceManager.GetString("listInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MOTD.
+        /// </summary>
+        internal static string motd {
+            get {
+                return ResourceManager.GetString("motd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Client Name.
         /// </summary>
         internal static string name {
@@ -363,6 +435,15 @@ namespace Server.Properties {
         internal static string start {
             get {
                 return ResourceManager.GetString("start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown command!.
+        /// </summary>
+        internal static string unknownCmd {
+            get {
+                return ResourceManager.GetString("unknownCmd", resourceCulture);
             }
         }
         

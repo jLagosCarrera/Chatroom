@@ -88,6 +88,7 @@
             this.chatTxt.ReadOnly = true;
             this.chatTxt.Size = new System.Drawing.Size(1038, 347);
             this.chatTxt.TabIndex = 0;
+            this.chatTxt.TabStop = false;
             // 
             // clientsGb
             // 
@@ -103,10 +104,13 @@
             // 
             this.clientsLView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.clientsLView.Location = new System.Drawing.Point(3, 18);
+            this.clientsLView.MultiSelect = false;
             this.clientsLView.Name = "clientsLView";
             this.clientsLView.Size = new System.Drawing.Size(505, 268);
             this.clientsLView.TabIndex = 0;
             this.clientsLView.UseCompatibleStateImageBehavior = false;
+            this.clientsLView.View = System.Windows.Forms.View.Tile;
+            this.clientsLView.SelectedIndexChanged += new System.EventHandler(this.ClientsLView_SelectedIndexChanged);
             // 
             // optionsGb
             // 

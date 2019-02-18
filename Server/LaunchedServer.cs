@@ -22,12 +22,20 @@ namespace Server
             {
                 server = new ServerHandler(false, slf.welcomeTxt.Text,
                     Convert.ToInt32(slf.portNumeric.Value), Convert.ToInt32(slf.clientsNumeric.Value),
-                    chatTxt, msgTxt);
+                    chatTxt, msgTxt, clientsLView);
                 btnSend.Click += new EventHandler(server.BtnSend_Click);
 
                 slf.Dispose();
                 slf = null;
             }
+
+            //Sets ListView properties
+            ImageList imgList = new ImageList();
+            imgList.Images.Add(Properties.Resources.Client);
+
+            clientsLView.LargeImageList = imgList;
+            clientsLView.SmallImageList = imgList;
+            clientsLView.StateImageList = imgList;
         }
 
         private void LaunchedServer_Load(object sender, EventArgs e)
@@ -92,6 +100,11 @@ namespace Server
                 else
                     server.CloseServer();
             }
+        }
+
+        private void ClientsLView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

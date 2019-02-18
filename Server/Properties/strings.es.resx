@@ -123,6 +123,9 @@
   <data name="assignedPort" xml:space="preserve">
     <value>Puerto asignado</value>
   </data>
+  <data name="availableCommands" xml:space="preserve">
+    <value>Comandos disponibles</value>
+  </data>
   <data name="chat" xml:space="preserve">
     <value>Chat</value>
   </data>
@@ -144,11 +147,20 @@
   <data name="closingTitle" xml:space="preserve">
     <value>Cerrando</value>
   </data>
+  <data name="cmdInfo" xml:space="preserve">
+    <value>Lista de comandos</value>
+  </data>
+  <data name="commands" xml:space="preserve">
+    <value>Escribe #cmd para ver los comandos disponibles</value>
+  </data>
   <data name="connectedClients" xml:space="preserve">
     <value>Clientes Conectados</value>
   </data>
   <data name="connectedWithClient" xml:space="preserve">
     <value>Conectado cliente {0} en el puerto {1}</value>
+  </data>
+  <data name="cya" xml:space="preserve">
+    <value>Vuelve pronto!</value>
   </data>
   <data name="disconnectedClient" xml:space="preserve">
     <value>Cliente {0} desconectado en el puerto {1}</value>
@@ -162,8 +174,8 @@
   <data name="error" xml:space="preserve">
     <value>Error</value>
   </data>
-  <data name="exit" xml:space="preserve">
-    <value>#salir</value>
+  <data name="exitInfo" xml:space="preserve">
+    <value>Sale del servidor</value>
   </data>
   <data name="fillWelcome" xml:space="preserve">
     <value>Debes insertar un mensaje de bienvenida</value>
@@ -186,11 +198,14 @@
   <data name="language" xml:space="preserve">
     <value>Idioma</value>
   </data>
-  <data name="list" xml:space="preserve">
-    <value>#list</value>
-  </data>
   <data name="listeningAtPort" xml:space="preserve">
     <value>escuchando en el puerto</value>
+  </data>
+  <data name="listInfo" xml:space="preserve">
+    <value>Lista los usuarios conectados</value>
+  </data>
+  <data name="motd" xml:space="preserve">
+    <value>MOTD</value>
   </data>
   <data name="name" xml:space="preserve">
     <value>Nombre del cliente</value>
@@ -218,6 +233,9 @@
   </data>
   <data name="start" xml:space="preserve">
     <value>Iniciar el servidor</value>
+  </data>
+  <data name="unknownCommand" xml:space="preserve">
+    <value>Comando desconocido!</value>
   </data>
   <data name="welcome" xml:space="preserve">
     <value>Mensaje de bienvenida</value>

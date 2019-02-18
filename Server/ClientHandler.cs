@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
@@ -7,14 +8,16 @@ namespace Server
 {
     class ClientHandler
     {
-        public ServerHandler AsociatedServer { get; set; }
-        public Thread ClientTh { get; set; }
-        public Socket Socket { get; set; }
-        public IPEndPoint Iep { get; set; }
+        readonly object clientLocker = new object();
 
-        public NetworkStream Stream { get; set; }
-        public StreamWriter Writer { get; set; }
-        public StreamReader Reader { get; set; }
+        public ServerHandler ConnectedServer { get; set; }
+        public Thread ClientThread { get; set; }
+        public Socket ClientSocket { get; set; }
+        public IPEndPoint ClientIep { get; set; }
+
+        public NetworkStream ClientStream { get; set; }
+        public StreamWriter ClientWriter { get; set; }
+        public StreamReader ClientReader { get; set; }
 
         private string name;
         public string Name
@@ -32,85 +35,142 @@ namespace Server
         public bool IsNameSet { get; set; }
         public bool ClientConnected { set; get; }
 
-        public ClientHandler(Socket s, ServerHandler asociatedServer)
+        public ClientHandler(Socket clientSocket, ServerHandler connectedServer)
         {
-            AsociatedServer = asociatedServer;
-            ClientTh = new Thread(ClientListening);
-            ClientTh.IsBackground = true;
+            ConnectedServer = connectedServer;
+            ClientThread = new Thread(ClientListening);
+            ClientThread.IsBackground = true;
 
-            Socket = s;
-            Iep = (IPEndPoint)s.RemoteEndPoint;
+            ClientSocket = clientSocket;
+            ClientIep = (IPEndPoint)clientSocket.RemoteEndPoint;
 
-            Stream = new NetworkStream(Socket);
-            Reader = new StreamReader(Stream);
-            Writer = new StreamWriter(Stream);
+            ClientStream = new NetworkStream(ClientSocket);
+            ClientReader = new StreamReader(ClientStream);
+            ClientWriter = new StreamWriter(ClientStream);
 
             ClientConnected = true;
 
-            ClientTh.Start();
+            ClientThread.Start();
         }
 
         public void CloseConnection()
         {
-            Writer.Close();
-            Reader.Close();
-            Stream.Close();
-            Socket.Close();
-            ClientConnected = false;
-            AsociatedServer.connectedClients.Remove(this);
+            lock (clientLocker)
+            {
+                if (ClientConnected)
+                {
+                    try
+                    {
+                        ClientWriter.WriteLine("-- " + Properties.strings.cya);
+                        ClientWriter.Flush();
 
+                    }
+                    catch (IOException) { }
+                    ConnectedServer.WriteToAllClients("-- " + string.Format(Properties.strings.disconnectedClient,
+                                    Name + "@" + ClientIep.Address, ClientIep.Port));
+
+                    ClientWriter.Close();
+                    ClientReader.Close();
+                    ClientStream.Close();
+                    ClientSocket.Close();
+                    ClientConnected = false;
+                    ConnectedServer.connectedClients.Remove(this);
+                }
+            }
         }
 
         private void ClientListening()
         {
             string message;
 
-            Writer.WriteLine(AsociatedServer.WelcomeMessage);
-            Writer.Flush();
-            Writer.Write(Properties.strings.enterNickname + ": ");
-            Writer.Flush();
+            lock (clientLocker)
+            {
+                if (ClientConnected)
+                {
+                    ClientWriter.WriteLine("-- " + Properties.strings.motd + ": " + ConnectedServer.WelcomeMessage);
+                    ClientWriter.Flush();
+                    ClientWriter.Write("-- " + Properties.strings.enterNickname + ": ");
+                    ClientWriter.Flush();
+                }
+            }
             try
             {
-                Name = Reader.ReadLine();
+                Name = ClientReader.ReadLine();
             }
-            catch (IOException)
-            {
-            }
+            catch (IOException) { }
 
-            AsociatedServer.WriteToAllClients(string.Format(Properties.strings.connectedWithClient,
-                Name + "@" + Iep.Address, Iep.Port));
+            ConnectedServer.WriteToAllClients("-- " + string.Format(Properties.strings.connectedWithClient,
+                Name + "@" + ClientIep.Address, ClientIep.Port));
+
+            lock (clientLocker)
+            {
+                if (ClientConnected)
+                {
+                    ClientWriter.WriteLine("-- " + Properties.strings.commands);
+                    ClientWriter.Flush();
+                }
+            }
 
             while (ClientConnected)
             {
                 try
                 {
-                    message = Reader.ReadLine();
-                    System.Console.WriteLine(message);
-
+                    message = ClientReader.ReadLine();
                     if (message != null)
-                        //Handle same things that you can do in GUI client for console telnet.
-                        if (message == Properties.strings.exit)
+                        //Handles available commands
+                        if (message[0] == '#')
                         {
-                            ClientConnected = false;
+                            if (message == Properties.strings.exit)
+                            {
+                                lock (clientLocker)
+                                    if (ClientConnected)
+                                        ClientConnected = false;
+                            }
+                            else if (message == Properties.strings.list)
+                            {
+                                lock (clientLocker)
+                                    if (ClientConnected)
+                                        ConnectedServer.List(this);
+                            }
+                            else if (message == Properties.strings.cmd)
+                            {
+                                lock (clientLocker)
+                                {
+                                    if (ClientConnected)
+                                    {
+                                        ClientWriter.WriteLine("-- " + Properties.strings.availableCommands + ": "); ClientWriter.Flush();
+                                        ClientWriter.WriteLine("\t-- " + Properties.strings.cmd + ": " + Properties.strings.cmdInfo); ClientWriter.Flush();
+                                        ClientWriter.WriteLine("\t-- " + Properties.strings.exit + ": " + Properties.strings.exitInfo); ClientWriter.Flush();
+                                        ClientWriter.WriteLine("\t-- " + Properties.strings.list + ": " + Properties.strings.listInfo); ClientWriter.Flush();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                lock (clientLocker)
+                                {
+                                    if (ClientConnected)
+                                    {
+                                        ClientWriter.WriteLine("-- " + Properties.strings.unknownCmd);
+                                        ClientWriter.Flush();
+                                    }
+                                }
+                            }
                         }
-                        else if (message == Properties.strings.list)
+                        else
                         {
-                            AsociatedServer.ConsoleList(this);
-                        } else
-                        {
-                            AsociatedServer.WriteToAllClients("|| " + Name + "@" + Iep.Address + " >> " + message);
+                            ConnectedServer.WriteToAllClients("|| " + Name + "@" + ClientIep.Address + " >> " + message);
                         }
                     else
                     {
-                        AsociatedServer.WriteToAllClients(string.Format(Properties.strings.disconnectedClient,
-                            Name + "@" + Iep.Address, Iep.Port));
+                        ConnectedServer.WriteToAllClients("-- " + string.Format(Properties.strings.disconnectedClient,
+                                        Name + "@" + ClientIep.Address, ClientIep.Port));
                     }
                 }
                 catch (IOException)
                 {
                     break;
                 }
-
             }
 
             CloseConnection();
