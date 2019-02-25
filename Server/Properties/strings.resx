@@ -249,4 +249,19 @@
   <data name="welcome" xml:space="preserve">
     <value>Welcome message</value>
   </data>
+  <data name="enterMessage" xml:space="preserve">
+    <value>Enter some message before sending!</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="selectAClient" xml:space="preserve">
+    <value>You must select a client before trying to delete it!</value>
+  </data>
+  <data name="selectSomething" xml:space="preserve">
+    <value>Select something!</value>
+  </data>
+  <data name="uSure" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
 </root>

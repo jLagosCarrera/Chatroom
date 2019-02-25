@@ -110,7 +110,6 @@
             this.clientsLView.TabIndex = 0;
             this.clientsLView.UseCompatibleStateImageBehavior = false;
             this.clientsLView.View = System.Windows.Forms.View.Tile;
-            this.clientsLView.SelectedIndexChanged += new System.EventHandler(this.ClientsLView_SelectedIndexChanged);
             // 
             // optionsGb
             // 

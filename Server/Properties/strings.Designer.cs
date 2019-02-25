@@ -223,6 +223,15 @@ namespace Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter some message before sending!.
+        /// </summary>
+        internal static string enterMessage {
+            get {
+                return ResourceManager.GetString("enterMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter your nickname.
         /// </summary>
         internal static string enterNickname {
@@ -349,6 +358,15 @@ namespace Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        internal static string message {
+            get {
+                return ResourceManager.GetString("message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MOTD.
         /// </summary>
         internal static string motd {
@@ -390,6 +408,24 @@ namespace Server.Properties {
         internal static string running {
             get {
                 return ResourceManager.GetString("running", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must select a client before trying to delete it!.
+        /// </summary>
+        internal static string selectAClient {
+            get {
+                return ResourceManager.GetString("selectAClient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select something!.
+        /// </summary>
+        internal static string selectSomething {
+            get {
+                return ResourceManager.GetString("selectSomething", resourceCulture);
             }
         }
         
@@ -444,6 +480,15 @@ namespace Server.Properties {
         internal static string unknownCmd {
             get {
                 return ResourceManager.GetString("unknownCmd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure?.
+        /// </summary>
+        internal static string uSure {
+            get {
+                return ResourceManager.GetString("uSure", resourceCulture);
             }
         }
         

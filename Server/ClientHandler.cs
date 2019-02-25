@@ -77,6 +77,7 @@ namespace Server
                     ConnectedServer.connectedClients.Remove(this);
                 }
             }
+            ConnectedServer.RefreshListView();
         }
 
         private void ClientListening()
@@ -87,17 +88,42 @@ namespace Server
             {
                 if (ClientConnected)
                 {
-                    ClientWriter.WriteLine("-- " + Properties.strings.motd + ": " + ConnectedServer.WelcomeMessage);
-                    ClientWriter.Flush();
-                    ClientWriter.Write("-- " + Properties.strings.enterNickname + ": ");
-                    ClientWriter.Flush();
+                    try
+                    {
+                        ClientWriter.WriteLine("-- " + Properties.strings.motd + ": " + ConnectedServer.WelcomeMessage);
+                        ClientWriter.Flush();
+                        ClientWriter.Write("-- " + Properties.strings.enterNickname + ": ");
+                        ClientWriter.Flush();
+                    }
+                    catch (IOException) { }
                 }
             }
             try
             {
-                Name = ClientReader.ReadLine();
+                do
+                {
+                    string name = ClientReader.ReadLine();
+                    if (string.IsNullOrWhiteSpace(name))
+                    {
+                        lock (clientLocker)
+                        {
+                            if (ClientConnected)
+                            {
+                                ClientWriter.Write("-- " + Properties.strings.enterNickname + ": ");
+                                ClientWriter.Flush();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Name = name;
+                    }
+
+                } while (string.IsNullOrWhiteSpace(name));
             }
             catch (IOException) { }
+
+            ConnectedServer.RefreshListView();
 
             ConnectedServer.WriteToAllClients("-- " + string.Format(Properties.strings.connectedWithClient,
                 Name + "@" + ClientIep.Address, ClientIep.Port));
@@ -106,8 +132,12 @@ namespace Server
             {
                 if (ClientConnected)
                 {
-                    ClientWriter.WriteLine("-- " + Properties.strings.commands);
-                    ClientWriter.Flush();
+                    try
+                    {
+                        ClientWriter.WriteLine("-- " + Properties.strings.commands);
+                        ClientWriter.Flush();
+                    }
+                    catch (IOException) { }
                 }
             }
 
@@ -115,56 +145,79 @@ namespace Server
             {
                 try
                 {
+                    lock (clientLocker)
+                    {
+                        if (ClientConnected)
+                        {
+                            ClientWriter.Write("-- " + Properties.strings.message + ": ");
+                            ClientWriter.Flush();
+                        }
+                    }
                     message = ClientReader.ReadLine();
                     if (message != null)
+                    {
                         //Handles available commands
-                        if (message[0] == '#')
+                        if (!string.IsNullOrWhiteSpace(message))
                         {
-                            if (message == Properties.strings.exit)
+                            if (message[0] == '#')
                             {
-                                lock (clientLocker)
-                                    if (ClientConnected)
-                                        ClientConnected = false;
-                            }
-                            else if (message == Properties.strings.list)
-                            {
-                                lock (clientLocker)
-                                    if (ClientConnected)
-                                        ConnectedServer.List(this);
-                            }
-                            else if (message == Properties.strings.cmd)
-                            {
-                                lock (clientLocker)
+                                if (message == Properties.strings.exit)
                                 {
-                                    if (ClientConnected)
+                                    lock (clientLocker)
+                                        if (ClientConnected)
+                                            CloseConnection();
+                                }
+                                else if (message == Properties.strings.list)
+                                {
+                                    lock (clientLocker)
+                                        if (ClientConnected)
+                                            ConnectedServer.List(this);
+                                }
+                                else if (message == Properties.strings.cmd)
+                                {
+                                    lock (clientLocker)
                                     {
-                                        ClientWriter.WriteLine("-- " + Properties.strings.availableCommands + ": "); ClientWriter.Flush();
-                                        ClientWriter.WriteLine("\t-- " + Properties.strings.cmd + ": " + Properties.strings.cmdInfo); ClientWriter.Flush();
-                                        ClientWriter.WriteLine("\t-- " + Properties.strings.exit + ": " + Properties.strings.exitInfo); ClientWriter.Flush();
-                                        ClientWriter.WriteLine("\t-- " + Properties.strings.list + ": " + Properties.strings.listInfo); ClientWriter.Flush();
+                                        if (ClientConnected)
+                                        {
+                                            ClientWriter.WriteLine("-- " + Properties.strings.availableCommands + ": ");
+                                            ClientWriter.Flush();
+                                            ClientWriter.WriteLine("\t-- " + Properties.strings.cmd + ": " + Properties.strings.cmdInfo);
+                                            ClientWriter.Flush();
+                                            ClientWriter.WriteLine("\t-- " + Properties.strings.exit + ": " + Properties.strings.exitInfo);
+                                            ClientWriter.Flush();
+                                            ClientWriter.WriteLine("\t-- " + Properties.strings.list + ": " + Properties.strings.listInfo);
+                                            ClientWriter.Flush();
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    lock (clientLocker)
+                                    {
+                                        if (ClientConnected)
+                                        {
+                                            ClientWriter.WriteLine("-- " + Properties.strings.unknownCmd);
+                                            ClientWriter.Flush();
+                                        }
                                     }
                                 }
                             }
                             else
                             {
-                                lock (clientLocker)
-                                {
-                                    if (ClientConnected)
-                                    {
-                                        ClientWriter.WriteLine("-- " + Properties.strings.unknownCmd);
-                                        ClientWriter.Flush();
-                                    }
-                                }
+                                ConnectedServer.WriteToAllClients("|| " + Name + "@" + ClientIep.Address + " >> " + message);
                             }
                         }
                         else
                         {
-                            ConnectedServer.WriteToAllClients("|| " + Name + "@" + ClientIep.Address + " >> " + message);
+                            lock (clientLocker)
+                            {
+                                if (ClientConnected)
+                                {
+                                    ClientWriter.WriteLine("-- " + Properties.strings.enterMessage);
+                                    ClientWriter.Flush();
+                                }
+                            }
                         }
-                    else
-                    {
-                        ConnectedServer.WriteToAllClients("-- " + string.Format(Properties.strings.disconnectedClient,
-                                        Name + "@" + ClientIep.Address, ClientIep.Port));
                     }
                 }
                 catch (IOException)

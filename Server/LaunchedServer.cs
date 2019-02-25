@@ -22,7 +22,7 @@ namespace Server
             {
                 server = new ServerHandler(false, slf.welcomeTxt.Text,
                     Convert.ToInt32(slf.portNumeric.Value), Convert.ToInt32(slf.clientsNumeric.Value),
-                    chatTxt, msgTxt, clientsLView);
+                    chatTxt, msgTxt, clientsLView, this);
                 btnSend.Click += new EventHandler(server.BtnSend_Click);
 
                 slf.Dispose();
@@ -36,6 +36,12 @@ namespace Server
             clientsLView.LargeImageList = imgList;
             clientsLView.SmallImageList = imgList;
             clientsLView.StateImageList = imgList;
+
+            //Set events for buttons
+            clientsLView.SelectedIndexChanged += new EventHandler(server.ClientsLView_SelectedIndexChanged);
+            btnClose.Click += new EventHandler(server.BtnClose_Click);
+            btnKickAll.Click += new EventHandler(server.BtnKickAll_Click);
+            btnKick.Click += new EventHandler(server.BtnKick_Click);
         }
 
         private void LaunchedServer_Load(object sender, EventArgs e)
@@ -100,11 +106,6 @@ namespace Server
                 else
                     server.CloseServer();
             }
-        }
-
-        private void ClientsLView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -17,18 +17,20 @@ namespace Server
 
         //Properties
         readonly object serverLocker = new object();
-        public ObservableCollection<ClientHandler> connectedClients = new ObservableCollection<ClientHandler>();
+        public List<ClientHandler> connectedClients = new List<ClientHandler>();
         Thread serverThread;
 
         public string WelcomeMessage { private set; get; }
         public int Port { private set; get; }
         public int ClientNumber { private set; get; }
         public bool ServerWorking { set; get; }
+        private ClientHandler SelectedClient { set; get; }
 
         //Output and input for server.
         public TextBox OutputTextbox { private set; get; }
         public TextBox InputTextbox { private set; get; }
         public ListView ClientsListView { private set; get; }
+        public Form ServerForm { private set; get; }
 
         IPEndPoint serverIep;
         Socket serverSocket;
@@ -40,14 +42,41 @@ namespace Server
         {
             t.AppendText(text + Environment.NewLine);
         }
-        
+
         //Way to trick Windows Forms to add in the ListView.
-        delegate void listAddDelegate(string text, int listIndex, int imgIndex, ListView l);
+        delegate void listAddDelegate(ClientHandler c, int listIndex, int imgIndex, ListView l);
         listAddDelegate lstAddDelegate;
-        private void AddList(string text, int listIndex, int imgIndex, ListView l)
+        private void AddList(ClientHandler c, int listIndex, int imgIndex, ListView l)
         {
-            l.Items.Add(text);
-            l.Items[listIndex].ImageIndex = imgIndex;
+            lock (serverLocker)
+            {
+                if (ServerWorking)
+                {
+                    l.Items.Insert(listIndex, c.Name + "@" + c.ClientIep.Address + ":" + c.ClientIep.Port);
+                    l.Items[listIndex].Tag = c;
+                    l.Items[listIndex].ImageIndex = imgIndex;
+                }
+            }
+        }
+
+        //Way to trick Windows Forms to delete in the ListView.
+        delegate void listDelDelegate(ClientHandler c, ListView l);
+        listAddDelegate lstDelDelegate;
+        private void DelList(ClientHandler c, ListView l)
+        {
+            lock (serverLocker)
+            {
+                if (ServerWorking)
+                {
+                    for (int i = connectedClients.Count - 1; i >= 0; i--)
+                    {
+                        if (c == (ClientHandler)l.Items[i].Tag)
+                        {
+                            l.Items.RemoveAt(i);
+                        }
+                    }
+                }
+            }
         }
 
         //Way to trick Windows Forms to clear the ListView.
@@ -55,24 +84,30 @@ namespace Server
         listClearDelegate lstClearDelegate;
         private void ClearList(ListView l)
         {
-            l.Clear();
+            lock (serverLocker)
+            {
+                if (ServerWorking)
+                {
+                    l.Clear();
+                }
+            }
         }
 
         //Constructor, just initializes values.
         public ServerHandler(bool serverWorking, string welcomeMessage, int port, int clientNumber,
-            TextBox outputTextbox, TextBox inputTextbox, ListView clientsListView)
+            TextBox outputTextbox, TextBox inputTextbox, ListView clientsListView, Form serverForm)
         {
             ServerWorking = serverWorking;
             WelcomeMessage = welcomeMessage;
             Port = port;
             ClientNumber = clientNumber;
 
-            connectedClients.CollectionChanged += ConnectedClient_CollectionChanged;
-
             OutputTextbox = outputTextbox;
             InputTextbox = inputTextbox;
             ClientsListView = clientsListView;
-            
+            ServerForm = serverForm;
+            SelectedClient = null;
+
             txtDelegate = new TextDelegate(ChangeText);
             lstAddDelegate = new listAddDelegate(AddList);
             lstClearDelegate = new listClearDelegate(ClearList);
@@ -100,7 +135,7 @@ namespace Server
                 lock (serverLocker)
                     if (ServerWorking)
                         connectedClients.Add(client);
-
+                RefreshListView();
             }
         }
 
@@ -115,8 +150,7 @@ namespace Server
         public void WriteToAllClients(string message)
         {
             WriteOnOutput(message);
-
-
+            
             lock (serverLocker)
             {
                 if (ServerWorking)
@@ -138,6 +172,7 @@ namespace Server
             }
         }
 
+        //Lists all connected clients in console
         public void List(ClientHandler client)
         {
             client.ClientWriter.WriteLine("-- " + Properties.strings.connectedClients + ":");
@@ -151,15 +186,23 @@ namespace Server
                     {
                         for (int i = connectedClients.Count - 1; i >= 0; i--)
                         {
-                            client.ClientWriter.WriteLine("\t--" + connectedClients[i].Name + "@" + connectedClients[i].ClientIep.Address);
-                            client.ClientWriter.Flush();
+                            try
+                            {
+                                client.ClientWriter.WriteLine("\t--" + connectedClients[i].Name + "@" + connectedClients[i].ClientIep.Address);
+                                client.ClientWriter.Flush();
+                            }
+                            catch (IOException) { }
                         }
                     }
                 }
                 else
                 {
-                    client.ClientWriter.WriteLine(Properties.strings.alone);
-                    client.ClientWriter.Flush();
+                    try
+                    {
+                        client.ClientWriter.WriteLine(Properties.strings.alone);
+                        client.ClientWriter.Flush();
+                    }
+                    catch (IOException) { }
                 }
             }
         }
@@ -181,6 +224,28 @@ namespace Server
         //Closes server.
         public void CloseServer()
         {
+            KickAllClients();
+            ServerWorking = false;
+        }
+
+        //Refreshes ListView with all conected clients
+        public void RefreshListView()
+        {
+            lock (serverLocker)
+            {
+                if (ServerWorking)
+                {
+                    ClientsListView.BeginInvoke(lstClearDelegate, ClientsListView);
+                    for (int i = 0; i < connectedClients.Count; i++)
+                    {
+                        ClientsListView.BeginInvoke(lstAddDelegate, connectedClients[i], i, 0, ClientsListView);
+                    }
+                }
+            }
+        }
+
+        private void KickAllClients()
+        {
             lock (serverLocker)
             {
                 if (ServerWorking)
@@ -191,24 +256,54 @@ namespace Server
                     }
                 }
             }
-
-            ServerWorking = false;
         }
 
-        //Observable Collection changed method
-        private void ConnectedClient_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        public void ClientsLView_SelectedIndexChanged(object sender, EventArgs e)
         {
             lock (serverLocker)
             {
                 if (ServerWorking)
                 {
-                    ClientsListView.BeginInvoke(lstClearDelegate, ClientsListView);
-                    for (int i = 0; i < connectedClients.Count; i++)
+                    ListView list = (ListView)sender;
+                    int selectedIndex = 0;
+                    foreach (int i in list.SelectedIndices)
                     {
-                        ClientsListView.BeginInvoke(lstAddDelegate, connectedClients[i].Name + "@" + connectedClients[i].ClientIep.Address, i, 0, ClientsListView);
+                        selectedIndex = i;
                     }
+                    ClientHandler c = (ClientHandler)list.Items[selectedIndex].Tag;
+                    SelectedClient = c;
                 }
             }
+        }
+
+        public void BtnKick_Click(object sender, EventArgs e)
+        {
+            if (SelectedClient == null)
+            {
+                MessageBox.Show(Properties.strings.selectAClient, Properties.strings.selectSomething, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                ClientsListView.BeginInvoke(lstDelDelegate, SelectedClient, ClientsListView);
+                SelectedClient.CloseConnection();
+                SelectedClient = null;
+            }
+        }
+
+        public void BtnKickAll_Click(object sender, EventArgs e)
+        {
+            DialogResult res;
+            res = MessageBox.Show(Properties.strings.uSure, Properties.strings.kickAll, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            if (res == DialogResult.Yes)
+            {
+                KickAllClients();
+            }
+        }
+
+        public void BtnClose_Click(object sender, EventArgs e)
+        {
+            ServerForm.Close();
         }
     }
 }
