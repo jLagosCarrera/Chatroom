@@ -117,148 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="alone" xml:space="preserve">
-    <value>Eres el único cliente conectado</value>
-  </data>
-  <data name="assignedPort" xml:space="preserve">
-    <value>Puerto asignado</value>
-  </data>
-  <data name="availableCommands" xml:space="preserve">
-    <value>Comandos disponibles</value>
-  </data>
-  <data name="chat" xml:space="preserve">
-    <value>Chat</value>
-  </data>
-  <data name="chatroomTitle" xml:space="preserve">
-    <value>Chatroom local</value>
-  </data>
-  <data name="clients" xml:space="preserve">
-    <value>Clientes</value>
-  </data>
-  <data name="clientsNumber" xml:space="preserve">
-    <value>Número de clientes</value>
-  </data>
-  <data name="close" xml:space="preserve">
-    <value>Cerrar servidor</value>
-  </data>
   <data name="closing" xml:space="preserve">
     <value>Estás seguro de que deseas cerrar?</value>
   </data>
   <data name="closingTitle" xml:space="preserve">
     <value>Cerrando</value>
   </data>
-  <data name="cmdInfo" xml:space="preserve">
-    <value>Lista de comandos</value>
-  </data>
-  <data name="commands" xml:space="preserve">
-    <value>Escribe #cmd para ver los comandos disponibles</value>
-  </data>
-  <data name="connectedClients" xml:space="preserve">
-    <value>Clientes Conectados</value>
-  </data>
-  <data name="connectedWithClient" xml:space="preserve">
-    <value>Conectado cliente {0} en el puerto {1}</value>
-  </data>
-  <data name="cya" xml:space="preserve">
-    <value>Vuelve pronto!</value>
-  </data>
-  <data name="disconnectedClient" xml:space="preserve">
-    <value>Cliente {0} desconectado en el puerto {1}</value>
+  <data name="connect" xml:space="preserve">
+    <value>Conectarse al servidor</value>
   </data>
   <data name="english" xml:space="preserve">
     <value>Inglés</value>
   </data>
-  <data name="enterNickname" xml:space="preserve">
-    <value>Introduce tu nombre de usuario</value>
+  <data name="enterName" xml:space="preserve">
+    <value>Introduce un nombre porfavor</value>
   </data>
   <data name="error" xml:space="preserve">
     <value>Error</value>
   </data>
-  <data name="exitInfo" xml:space="preserve">
-    <value>Sale del servidor</value>
-  </data>
-  <data name="fillWelcome" xml:space="preserve">
-    <value>Debes insertar un mensaje de bienvenida</value>
-  </data>
-  <data name="hostedAtPort" xml:space="preserve">
-    <value>alojado en el puerto</value>
-  </data>
   <data name="info" xml:space="preserve">
-    <value>Te recomendamos que elijas como puerto por defecto el 11235.</value>
+    <value>El puerto por defecto es el 11235</value>
   </data>
-  <data name="ip" xml:space="preserve">
-    <value>IP del Cliente</value>
+  <data name="invalidIp" xml:space="preserve">
+    <value>IP Invalida</value>
   </data>
-  <data name="kick" xml:space="preserve">
-    <value>Echar al cliente seleccionado</value>
-  </data>
-  <data name="kickAll" xml:space="preserve">
-    <value>Echar A TODOS los clientes</value>
-  </data>
-  <data name="language" xml:space="preserve">
-    <value>Idioma</value>
-  </data>
-  <data name="listeningAtPort" xml:space="preserve">
-    <value>escuchando en el puerto</value>
-  </data>
-  <data name="listInfo" xml:space="preserve">
-    <value>Lista los usuarios conectados</value>
-  </data>
-  <data name="motd" xml:space="preserve">
-    <value>MOTD</value>
+  <data name="ipport" xml:space="preserve">
+    <value>Ip y Puerto</value>
   </data>
   <data name="name" xml:space="preserve">
-    <value>Nombre del cliente</value>
+    <value>Nombre</value>
   </data>
-  <data name="options" xml:space="preserve">
-    <value>Opciones</value>
-  </data>
-  <data name="port" xml:space="preserve">
-    <value>Puerto</value>
-  </data>
-  <data name="running" xml:space="preserve">
-    <value>funcionando</value>
-  </data>
-  <data name="send" xml:space="preserve">
-    <value>Enviar</value>
-  </data>
-  <data name="server" xml:space="preserve">
-    <value>Servidor</value>
-  </data>
-  <data name="serverInfo" xml:space="preserve">
-    <value>Información del servidor</value>
+  <data name="serverClient" xml:space="preserve">
+    <value>Cliente del servidor</value>
   </data>
   <data name="spanish" xml:space="preserve">
     <value>Español</value>
-  </data>
-  <data name="start" xml:space="preserve">
-    <value>Iniciar el servidor</value>
-  </data>
-  <data name="unknownCommand" xml:space="preserve">
-    <value>Comando desconocido!</value>
-  </data>
-  <data name="welcome" xml:space="preserve">
-    <value>Mensaje de bienvenida</value>
-  </data>
-  <data name="enterMessage" xml:space="preserve">
-    <value>Escribe algo para enviarlo!</value>
-  </data>
-  <data name="message" xml:space="preserve">
-    <value>Mensaje</value>
-  </data>
-  <data name="selectAClient" xml:space="preserve">
-    <value>Selecciona un cliente antes de intentar borrarlo!</value>
-  </data>
-  <data name="selectSomething" xml:space="preserve">
-    <value>Selecciona algo!</value>
-  </data>
-  <data name="noClientsConnected" xml:space="preserve">
-    <value>No hay clientes conectados</value>
-  </data>
-  <data name="uSure" xml:space="preserve">
-    <value>Estás seguro?</value>
-  </data>
-  <data name="usedPort" xml:space="preserve">
-    <value>Este puerto ya se encuentra en uso</value>
   </data>
 </root>

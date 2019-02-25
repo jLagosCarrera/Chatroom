@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Windows.Forms;
 
+//TODO Data consistence, maybe create a log and save it in a txt file.
 namespace Server
 {
     class ServerHandler
@@ -269,6 +270,18 @@ namespace Server
                             PortTextbox, false);
                         NameTextbox.BeginInvoke(txtDelegate,
                             SelectedClient.Name,
+                            NameTextbox, false);
+                    }
+                    else
+                    {
+                        IpTextbox.BeginInvoke(txtDelegate,
+                            "-",
+                            IpTextbox, false);
+                        PortTextbox.BeginInvoke(txtDelegate,
+                            "-",
+                            PortTextbox, false);
+                        NameTextbox.BeginInvoke(txtDelegate,
+                            "-",
                             NameTextbox, false);
                     }
                 }

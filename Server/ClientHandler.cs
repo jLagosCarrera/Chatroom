@@ -145,14 +145,6 @@ namespace Server
             {
                 try
                 {
-                    lock (clientLocker)
-                    {
-                        if (ClientConnected)
-                        {
-                            ClientWriter.Write("-- " + Properties.strings.message + ": ");
-                            ClientWriter.Flush();
-                        }
-                    }
                     message = ClientReader.ReadLine();
                     if (message != null)
                     {
@@ -218,6 +210,10 @@ namespace Server
                                 }
                             }
                         }
+                    }
+                    else
+                    {
+                        CloseConnection();
                     }
                 }
                 catch (IOException)

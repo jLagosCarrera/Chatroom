@@ -9,7 +9,7 @@ namespace Server
         //Dialog result for closing handling.
         DialogResult startRes;
         ServerHandler server;
-                
+
         public LaunchedServer()
         {
             InitializeComponent();
@@ -27,21 +27,23 @@ namespace Server
 
                 slf.Dispose();
                 slf = null;
+
+                //Sets ListView properties
+                ImageList imgList = new ImageList();
+                imgList.Images.Add(Properties.Resources.Client);
+
+                clientsLView.LargeImageList = imgList;
+                clientsLView.SmallImageList = imgList;
+                clientsLView.StateImageList = imgList;
+
+                chatTxt.ScrollBars = ScrollBars.Vertical;
+
+                //Set events for buttons
+                clientsLView.SelectedIndexChanged += new EventHandler(server.ClientsLView_SelectedIndexChanged);
+                btnClose.Click += new EventHandler(server.BtnClose_Click);
+                btnKickAll.Click += new EventHandler(server.BtnKickAll_Click);
+                btnKick.Click += new EventHandler(server.BtnKick_Click);
             }
-
-            //Sets ListView properties
-            ImageList imgList = new ImageList();
-            imgList.Images.Add(Properties.Resources.Client);
-
-            clientsLView.LargeImageList = imgList;
-            clientsLView.SmallImageList = imgList;
-            clientsLView.StateImageList = imgList;
-
-            //Set events for buttons
-            clientsLView.SelectedIndexChanged += new EventHandler(server.ClientsLView_SelectedIndexChanged);
-            btnClose.Click += new EventHandler(server.BtnClose_Click);
-            btnKickAll.Click += new EventHandler(server.BtnKickAll_Click);
-            btnKick.Click += new EventHandler(server.BtnKick_Click);
         }
 
         private void LaunchedServer_Load(object sender, EventArgs e)
@@ -92,7 +94,7 @@ namespace Server
             this.WindowState = FormWindowState.Normal;
             notifyIcon.Visible = false;
         }
-        
+
         //Server form closing.
         private void LaunchedServer_FormClosing(object sender, FormClosingEventArgs e)
         {

@@ -493,6 +493,15 @@ namespace Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Port is already being used.
+        /// </summary>
+        internal static string usedPort {
+            get {
+                return ResourceManager.GetString("usedPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure?.
         /// </summary>
         internal static string uSure {

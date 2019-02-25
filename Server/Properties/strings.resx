@@ -267,4 +267,7 @@
   <data name="uSure" xml:space="preserve">
     <value>Are you sure?</value>
   </data>
+  <data name="usedPort" xml:space="preserve">
+    <value>Port is already being used</value>
+  </data>
 </root>

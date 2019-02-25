@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -57,11 +59,21 @@ namespace Server
 
         private void StartBtn_Click(object sender, EventArgs e)
         {
+            bool allOk = true;
+
             if (string.IsNullOrWhiteSpace(this.welcomeTxt.Text))
             {
                 MessageBox.Show(Properties.strings.fillWelcome, Properties.strings.error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                allOk = false;
             }
-            else
+
+            if (!IsOpenPort(Convert.ToInt32(portNumeric.Value)))
+            {
+                MessageBox.Show(Properties.strings.usedPort, Properties.strings.error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                allOk = false;
+            }
+
+            if (allOk)
             {
                 this.DialogResult = DialogResult.OK;
             }
@@ -78,6 +90,25 @@ namespace Server
                 if (res == DialogResult.Cancel)
                     e.Cancel = true;
             }
+        }
+
+        private bool IsOpenPort(int port)
+        {
+            bool isOpen = true;
+
+            IPGlobalProperties ipGlobalProperties = IPGlobalProperties.GetIPGlobalProperties();
+            IPEndPoint[] tcpConnInfoArray = ipGlobalProperties.GetActiveTcpListeners();
+
+            foreach (IPEndPoint endpoint in tcpConnInfoArray)
+            {
+                if (endpoint.Port == port)
+                {
+                    isOpen = false;
+                    break;
+                }
+            }
+
+            return isOpen;
         }
     }
 }
