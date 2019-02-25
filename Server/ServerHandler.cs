@@ -29,6 +29,9 @@ namespace Server
         //Output and input for server.
         public TextBox OutputTextbox { private set; get; }
         public TextBox InputTextbox { private set; get; }
+        public TextBox IpTextbox { private set; get; }
+        public TextBox PortTextbox { private set; get; }
+        public TextBox NameTextbox { private set; get; }
         public ListView ClientsListView { private set; get; }
         public Form ServerForm { private set; get; }
 
@@ -36,11 +39,15 @@ namespace Server
         Socket serverSocket;
 
         //Way to trick Windows Forms to write in the Output Textbox.
-        delegate void TextDelegate(string text, TextBox t);
+        //If its true, appends on the textbox, if not, overwrites.
+        delegate void TextDelegate(string text, TextBox t, bool append);
         TextDelegate txtDelegate;
-        private void ChangeText(string text, TextBox t)
+        private void ChangeText(string text, TextBox t, bool append)
         {
-            t.AppendText(text + Environment.NewLine);
+            if (append)
+                t.AppendText(text + Environment.NewLine);
+            else
+                t.Text = text;
         }
 
         //Way to trick Windows Forms to add in the ListView.
@@ -95,7 +102,8 @@ namespace Server
 
         //Constructor, just initializes values.
         public ServerHandler(bool serverWorking, string welcomeMessage, int port, int clientNumber,
-            TextBox outputTextbox, TextBox inputTextbox, ListView clientsListView, Form serverForm)
+            TextBox outputTextbox, TextBox inputTextbox, ListView clientsListView,
+            TextBox ipTextbox, TextBox portTextbox, TextBox nameTextBox, Form serverForm)
         {
             ServerWorking = serverWorking;
             WelcomeMessage = welcomeMessage;
@@ -104,6 +112,9 @@ namespace Server
 
             OutputTextbox = outputTextbox;
             InputTextbox = inputTextbox;
+            IpTextbox = ipTextbox;
+            PortTextbox = portTextbox;
+            NameTextbox = nameTextBox;
             ClientsListView = clientsListView;
             ServerForm = serverForm;
             SelectedClient = null;
@@ -127,7 +138,7 @@ namespace Server
             OutputTextbox.BeginInvoke(txtDelegate,
                 "-- " + Properties.strings.chatroomTitle
                 + " " + Properties.strings.listeningAtPort + " " + Port,
-                OutputTextbox);
+                OutputTextbox, true);
 
             while (ServerWorking)
             {
@@ -135,7 +146,7 @@ namespace Server
                 lock (serverLocker)
                     if (ServerWorking)
                         connectedClients.Add(client);
-                RefreshListView();
+                RefreshInfo();
             }
         }
 
@@ -143,14 +154,14 @@ namespace Server
         private void WriteOnOutput(string message)
         {
             if (ServerWorking)
-                OutputTextbox.BeginInvoke(txtDelegate, message, OutputTextbox);
+                OutputTextbox.BeginInvoke(txtDelegate, message, OutputTextbox, true);
         }
 
         //Writes to all clients.
         public void WriteToAllClients(string message)
         {
             WriteOnOutput(message);
-            
+
             lock (serverLocker)
             {
                 if (ServerWorking)
@@ -210,8 +221,15 @@ namespace Server
         //Handles message sending from server
         public void BtnSend_Click(object sender, EventArgs e)
         {
-            WriteToAllClients("|| " + Properties.strings.server + "@" + serverIep.Address + " >> " + InputTextbox.Text);
-            InputTextbox.Clear();
+            if (string.IsNullOrWhiteSpace(InputTextbox.Text))
+            {
+                MessageBox.Show(Properties.strings.enterMessage, Properties.strings.error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                WriteToAllClients("|| " + Properties.strings.server + "@" + serverIep.Address + " >> " + InputTextbox.Text);
+                InputTextbox.Clear();
+            }
         }
 
         //Opens server.
@@ -228,8 +246,8 @@ namespace Server
             ServerWorking = false;
         }
 
-        //Refreshes ListView with all conected clients
-        public void RefreshListView()
+        //Refreshes ListView with all conected clients and refreshes selected client info.
+        public void RefreshInfo()
         {
             lock (serverLocker)
             {
@@ -240,10 +258,24 @@ namespace Server
                     {
                         ClientsListView.BeginInvoke(lstAddDelegate, connectedClients[i], i, 0, ClientsListView);
                     }
+
+                    if (SelectedClient != null)
+                    {
+                        IpTextbox.BeginInvoke(txtDelegate,
+                            SelectedClient.ClientIep.Address.ToString(),
+                            IpTextbox, false);
+                        PortTextbox.BeginInvoke(txtDelegate,
+                            SelectedClient.ClientIep.Port.ToString(),
+                            PortTextbox, false);
+                        NameTextbox.BeginInvoke(txtDelegate,
+                            SelectedClient.Name,
+                            NameTextbox, false);
+                    }
                 }
             }
         }
 
+        //Kicks all clients
         private void KickAllClients()
         {
             lock (serverLocker)
@@ -258,6 +290,7 @@ namespace Server
             }
         }
 
+        //Selected index changed on the ListView gets the selected Client and sets Textboxes.
         public void ClientsLView_SelectedIndexChanged(object sender, EventArgs e)
         {
             lock (serverLocker)
@@ -272,10 +305,22 @@ namespace Server
                     }
                     ClientHandler c = (ClientHandler)list.Items[selectedIndex].Tag;
                     SelectedClient = c;
+
+
+                    IpTextbox.BeginInvoke(txtDelegate,
+                        SelectedClient.ClientIep.Address.ToString(),
+                        IpTextbox, false);
+                    PortTextbox.BeginInvoke(txtDelegate,
+                        SelectedClient.ClientIep.Port.ToString(),
+                        PortTextbox, false);
+                    NameTextbox.BeginInvoke(txtDelegate,
+                        SelectedClient.Name,
+                        NameTextbox, false);
                 }
             }
         }
 
+        //Kick a single client
         public void BtnKick_Click(object sender, EventArgs e)
         {
             if (SelectedClient == null)
@@ -288,19 +333,32 @@ namespace Server
                 SelectedClient.CloseConnection();
                 SelectedClient = null;
             }
+
+            RefreshInfo();
         }
 
+        //Kicks all clients.
         public void BtnKickAll_Click(object sender, EventArgs e)
         {
-            DialogResult res;
-            res = MessageBox.Show(Properties.strings.uSure, Properties.strings.kickAll, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-
-            if (res == DialogResult.Yes)
+            if (connectedClients.Count == 0)
             {
-                KickAllClients();
+                MessageBox.Show(Properties.strings.noClientsConnected, Properties.strings.error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+            else
+            {
+                DialogResult res;
+                res = MessageBox.Show(Properties.strings.uSure, Properties.strings.kickAll, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+                if (res == DialogResult.Yes)
+                {
+                    KickAllClients();
+                }
+            }
+
+            RefreshInfo();
         }
 
+        //Close server button
         public void BtnClose_Click(object sender, EventArgs e)
         {
             ServerForm.Close();

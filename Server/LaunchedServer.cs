@@ -22,7 +22,7 @@ namespace Server
             {
                 server = new ServerHandler(false, slf.welcomeTxt.Text,
                     Convert.ToInt32(slf.portNumeric.Value), Convert.ToInt32(slf.clientsNumeric.Value),
-                    chatTxt, msgTxt, clientsLView, this);
+                    chatTxt, msgTxt, clientsLView, ipTxt, portTxt, nameTxt, this);
                 btnSend.Click += new EventHandler(server.BtnSend_Click);
 
                 slf.Dispose();

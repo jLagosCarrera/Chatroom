@@ -261,6 +261,9 @@
   <data name="selectSomething" xml:space="preserve">
     <value>Select something!</value>
   </data>
+  <data name="noClientsConnected" xml:space="preserve">
+    <value>No clients connected</value>
+  </data>
   <data name="uSure" xml:space="preserve">
     <value>Are you sure?</value>
   </data>

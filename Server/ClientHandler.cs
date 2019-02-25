@@ -77,7 +77,7 @@ namespace Server
                     ConnectedServer.connectedClients.Remove(this);
                 }
             }
-            ConnectedServer.RefreshListView();
+            ConnectedServer.RefreshInfo();
         }
 
         private void ClientListening()
@@ -123,7 +123,7 @@ namespace Server
             }
             catch (IOException) { }
 
-            ConnectedServer.RefreshListView();
+            ConnectedServer.RefreshInfo();
 
             ConnectedServer.WriteToAllClients("-- " + string.Format(Properties.strings.connectedWithClient,
                 Name + "@" + ClientIep.Address, ClientIep.Port));

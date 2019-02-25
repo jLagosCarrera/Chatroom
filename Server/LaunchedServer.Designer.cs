@@ -251,14 +251,14 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnKickAll;
         private System.Windows.Forms.Button btnKick;
-        private System.Windows.Forms.TextBox nameTxt;
         private System.Windows.Forms.Label nameLbl;
-        private System.Windows.Forms.TextBox portTxt;
         private System.Windows.Forms.Label portLbl;
-        private System.Windows.Forms.TextBox ipTxt;
         private System.Windows.Forms.Label ipLbl;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.TextBox msgTxt;
         private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.TextBox nameTxt;
+        private System.Windows.Forms.TextBox portTxt;
+        private System.Windows.Forms.TextBox ipTxt;
     }
 }

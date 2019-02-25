@@ -385,6 +385,15 @@ namespace Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No clients connected.
+        /// </summary>
+        internal static string noClientsConnected {
+            get {
+                return ResourceManager.GetString("noClientsConnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
         internal static string options {
